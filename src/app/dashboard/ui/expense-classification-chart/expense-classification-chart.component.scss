@@ -1,0 +1,13 @@
+.chart-container{
+    width: 50em;
+    height: 50em;
+    transform: translate(-60%,20%) scale(1.2);
+}
+
+@media (max-width: 1024px){
+    .chart-container{
+        width: 30em;
+        height: 30em;
+        transform: translate(0%, -30%) scale(1);
+    }
+}
