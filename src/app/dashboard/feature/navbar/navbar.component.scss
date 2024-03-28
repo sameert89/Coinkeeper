@@ -3,12 +3,13 @@
   border: 1px solid gray;
   padding: 0.5em;
   justify-content: center;
-  position: absolute;
+  position: fixed;
   bottom: 5%;
   left: 50%;
   transform: translate(-50%);
   min-width: 4em;
   border-radius: 10px;
+  background-color: var(--bgColor);
 }
 .nav-button {
   margin: 0.2em;

@@ -18,7 +18,7 @@ export class ExpenseClassificationChartComponent {
   constructor(private toggleThemeService: ToggleThemeService){}
   ngOnInit() {
     this.toggleThemeService.mode$.subscribe(mode => {
-      this.theme = mode == 'light' ? 'dark' : 'cool';
+      this.theme = mode == 'light' ? 'dark' : 'london';
     });
   }
   totalSpent: number = 22500;

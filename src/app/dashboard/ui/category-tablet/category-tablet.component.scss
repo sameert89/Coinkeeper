@@ -1,0 +1,43 @@
+.card {
+  box-sizing: border-box;
+  // background: rgba(217, 217, 217, 0.58);
+  border: 1px solid white;
+  box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.22);
+  // backdrop-filter: blur(6px);
+  border-radius: 17px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  font-weight: bolder;
+  color: var(--textColor);
+  max-width: 190px; /* Max width as per original design */
+  height: auto; /* Make height flexible */
+  padding: 20px; /* Adjust padding for content */
+  
+}
+
+.card:hover {
+  border: 1px solid var(--textColor);
+  transform: scale(1.05);
+}
+
+.card:active {
+  transform: scale(0.95) rotateZ(1.7deg);
+}
+
+.category-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 7em;
+  padding: 0.5em;
+}
+
+.category-title {
+  font-family: "Clash Grotesk";
+}

@@ -1,0 +1,55 @@
+.budget-details-container {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%);
+  margin: 1em;
+  display: flex;
+  text-align: center;
+  font-family: "Clash Grotesk";
+  align-items: flex-start;
+  justify-content: space-between;
+
+  padding: 0.5em 3em;
+
+  width: 20vw;
+  z-index: 999;
+}
+.inner-container {
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+hr {
+  border: 1px solid;
+  width: 70%;
+  margin: 0;
+}
+h2 {
+  margin: 0;
+  font-weight: bold;
+}
+.vertical-rule{
+    height: 6em;
+    width: 1px;
+    background-color: var(--textColor);
+}
+.budget {
+  color: rgb(0, 161, 0);
+}
+.spent {
+  color: rgb(255, 54, 54);
+}
+
+@media (max-width: 1024px) {
+  .budget-details-container {
+    border: 2px solid;
+    border-radius: 10px;
+    position: static;
+    transform: translate(0%);
+    margin-top: 25em;
+    width: 60vw;
+  }
+}
