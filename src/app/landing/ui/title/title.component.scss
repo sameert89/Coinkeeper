@@ -1,0 +1,16 @@
+.description{
+    font-size: 3.5em;
+    font-family: 'Clash Grotesk';
+}
+.title{
+    font-size: 3.5em;
+    font-family: 'Clash Grotesk';
+    text-align: center;
+    margin: 1em 0;
+}
+
+@media(max-width: 1500px){
+    .description{
+        font-size: 2em;
+    }
+}

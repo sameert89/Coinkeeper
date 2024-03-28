@@ -1,0 +1,16 @@
+<div class = 'landing-container'>
+    <app-toggle-theme></app-toggle-theme>
+    <!--Static Decorators-->
+    <img class = 'deco-star' src = 'assets/BlackStarLight.svg' *ngIf="mode=='light'"/> <!--Logical Error I Know -->
+    <img class = 'deco-flowers' src = 'assets/FlowerLight.svg' *ngIf="mode=='light'"/>
+    <img class = 'deco-circle' src = 'assets/HollowCircleLight.svg'*ngIf="mode=='light'"/>
+    <img class = 'deco-star-2' src = 'assets/BlackStarLight.svg' *ngIf="mode=='light'"/>
+
+    <img class = 'deco-star' src = 'assets/BlackStarDark.svg'  *ngIf="mode=='dark'"/>
+    <img class = 'deco-flowers' src = 'assets/FlowerDark.svg'  *ngIf="mode=='dark'"/>
+    <img class = 'deco-circle' src = 'assets/HollowCircleDark.svg' *ngIf="mode=='dark'"/>
+    <img class = 'deco-star-2' src = 'assets/BlackStarDark.svg'  *ngIf="mode=='dark'"/>
+    <!--Static Decorators-->
+    
+    <router-outlet></router-outlet>
+</div>
