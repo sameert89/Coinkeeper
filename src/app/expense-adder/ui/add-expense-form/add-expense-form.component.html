@@ -1,10 +1,15 @@
 <app-navbar></app-navbar>
-<div class="expense-form-container">
+<form [formGroup]="expenseFormGroup" class="expense-form-container">
   <img class="logo" src="assets/CoinKeepLogo.svg" alt="coinkeep logo image" />
 
   <mat-form-field appearance="outline">
     <mat-label class="input-label">Expense Name</mat-label>
-    <input matInput placeholder="What was the expense?" />
+    <input
+      matInput
+      placeholder="What was the expense?"
+      formControlName="expenseName"
+      required
+    />
     <mat-icon matSuffix>help_outline</mat-icon>
   </mat-form-field>
 
@@ -12,11 +17,11 @@
     <mat-label class="input-label"> Category </mat-label>
     <mat-select
       class="selector"
-      [(value)]="selectedValue"
+      [(value)]="expenseFormData.category"
       name="expense-selector"
     >
       @for (category of categories; track $index) {
-      <mat-option value="$index">{{ category.name }}</mat-option>
+      <mat-option value="$index">{{ category[0] }}</mat-option>
       }
     </mat-select>
     <mat-icon matSuffix>category</mat-icon>
@@ -30,21 +35,33 @@
       step="any"
       matInput
       placeholder="How much was expense?"
+      formControlName="value"
+      required
     />
     <mat-icon matSuffix>monetization_on</mat-icon>
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label class="input-label"> Date of Transaction </mat-label>
-    <input matInput [matDatepicker]="picker" placeholder="MM/DD/YY"/>
-    <mat-datepicker-toggle matIconSuffix [for]="picker" ></mat-datepicker-toggle>
+    <input
+      matInput
+      [matDatepicker]="picker"
+      placeholder="MM/DD/YY"
+      formControlName="date"
+    />
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
   <div class="button-group">
-    <button class="form-button" type="button" mat-icon-button>
+    <button
+      (click)="openDialog()"
+      class="form-button"
+      type="button"
+      mat-icon-button
+    >
       <mat-icon>mic</mat-icon>
     </button>
     <button class="form-button" type="button" mat-icon-button>
       <mat-icon>add</mat-icon>
     </button>
   </div>
-</div>
+</form>

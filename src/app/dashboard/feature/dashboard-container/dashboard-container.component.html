@@ -1,6 +1,12 @@
 <div class="dashboard-container">
-  <app-budget-info></app-budget-info>
-  <app-expense-classification-chart></app-expense-classification-chart>
-  <app-category-expenditure-grid></app-category-expenditure-grid>
+  <app-budget-info
+    [budgetInfo]="dashboardComponentData.budgetInfo"
+  ></app-budget-info>
+  <app-expense-classification-chart
+    [chartData]="dashboardComponentData.chartData"
+  ></app-expense-classification-chart>
+  <app-category-expenditure-grid
+    [values]="dashboardComponentData.categorywiseExpenditureValues"
+  ></app-category-expenditure-grid>
   <app-navbar></app-navbar>
 </div>

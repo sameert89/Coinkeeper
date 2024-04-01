@@ -1,0 +1,19 @@
+.dialog-container {
+  background-color: var(--bgColor);
+  font-family: "Clash Grotesk";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2 {
+  color: var(--textColor) !important;
+  margin-bottom: 1em;
+}
+button {
+  color: var(--textColor) !important;
+}
+
+.input-label {
+  color: var(--textColor) !important;
+}

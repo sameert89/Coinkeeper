@@ -1,0 +1,23 @@
+<div class="dialog-container">
+  <h2 class=".text-color" mat-dialog-title>Tap the Microphone and Speak!</h2>
+  <mat-dialog-content>
+    <mat-form-field appearance="outline">
+      <mat-label class="input-label">Voice Output</mat-label>
+      <input matInput [(ngModel)]="speechText" />
+    </mat-form-field>
+    <button
+      (click)="startSpeechRecognition()"
+      class="form-button"
+      type="button"
+      mat-icon-button
+    >
+      <mat-icon>mic</mat-icon>
+    </button>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Back</button>
+    <button mat-button [mat-dialog-close]="data.voiceData" cdkFocusInitial>
+      Ok
+    </button>
+  </mat-dialog-actions>
+</div>
