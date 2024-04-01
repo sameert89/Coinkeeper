@@ -1,0 +1,61 @@
+<form [formGroup]="registerForm" class="register-form-container">
+  <h2>
+    <strong>{{ title }}</strong>
+  </h2>
+  <mat-form-field appearance="outline">
+    <mat-label class="register-label">Your Name</mat-label>
+    <input
+      formControlName="name"
+      required
+      class="register-form-input"
+      matInput
+      placeholder="Name"
+    />
+    <mat-icon matSuffix>person</mat-icon>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label class="register-label">Email</mat-label>
+    <input
+      type="email"
+      class="register-form-input"
+      matInput
+      placeholder="Email ID"
+      required
+      formControlName="email"
+    />
+    <mat-icon matSuffix>email</mat-icon>
+  </mat-form-field>
+  <mat-form-field class="auth-input" appearance="outline">
+    <mat-label class="register-label">Create Password</mat-label>
+    <input
+      class="register-form-input"
+      type="password"
+      matInput
+      placeholder="Password"
+      required
+      formControlName="password"
+    />
+    <mat-icon matSuffix>vpn_key</mat-icon>
+  </mat-form-field>
+  <mat-form-field class="auth-input" appearance="outline">
+    <mat-label class="register-label">Confirm Password</mat-label>
+    <input
+      class="register-form-input"
+      type="password"
+      matInput
+      placeholder="Password"
+      required
+      formControlName="confirmPassword"
+    />
+    <mat-icon matSuffix>vpn_key</mat-icon>
+  </mat-form-field>
+  <p class="register-info">
+    Already have and account?
+    <a routerLink="/login" routerLinkActive="active">Login</a>
+  </p>
+  <app-start-button
+    (clicked)="registerUser()"
+    [buttonTitle]="'Continue'"
+    [disabled]="!registerForm.valid"
+  ></app-start-button>
+</form>

@@ -35,7 +35,7 @@
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label class="input-label"> Date of Transaction </mat-label>
-    <input matInput [matDatepicker]="picker" placeholder="MM/DD/YY"/>
+    <input matInput [matDatepicker]="picker" placeholder="MM/DD/YY" [formControl]="date"/>
     <mat-datepicker-toggle matIconSuffix [for]="picker" ></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>

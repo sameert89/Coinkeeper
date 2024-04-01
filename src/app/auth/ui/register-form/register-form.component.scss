@@ -1,0 +1,44 @@
+.register-form-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid;
+  border-radius: 10px;
+  padding: 1.5em;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 10px 10px 5px 0px rgba(214, 214, 214, 0.75);
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(214, 214, 214, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(214, 214, 214, 0.75);
+}
+h2 {
+  font-family: "Clash Grotesk";
+  font-size: 2em;
+  text-align: center;
+}
+
+.register-form-input {
+  color: var(--textColor) !important;
+}
+.register-form-input::placeholder {
+  color: grey !important;
+}
+
+::ng-deep .mdc-notched-outline__leading {
+  border-color: grey !important;
+}
+::ng-deep .mdc-notched-outline__notch {
+  border-color: grey !important;
+}
+::ng-deep .mdc-notched-outline__trailing {
+  border-color: grey !important;
+}
+.register-label {
+  color: grey;
+}
+
+.register-info {
+  font-family: "Clash Grotesk";
+  margin: 0;
+  text-align: center;
+}

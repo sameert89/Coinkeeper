@@ -8,11 +8,12 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { NavbarComponent } from '../../../dashboard/feature/navbar/navbar.component';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-add-expense-form',
   standalone: true,
-  imports: [NavbarComponent,MatDatepickerModule,MatButtonModule, MatSelectModule ,MatFormFieldModule, MatIconModule, MatLabel, MatInputModule],
+  imports: [ReactiveFormsModule,NavbarComponent,MatDatepickerModule,MatButtonModule, MatSelectModule ,MatFormFieldModule, MatIconModule, MatLabel, MatInputModule],
   templateUrl: './add-expense-form.component.html',
   styleUrl: './add-expense-form.component.scss',
   providers: [provideNativeDateAdapter()]
@@ -20,4 +21,5 @@ import { NavbarComponent } from '../../../dashboard/feature/navbar/navbar.compon
 export class AddExpenseFormComponent {
   categories: any[] = categories;
   selectedValue: string = this.categories[0].name;
+  date = new FormControl(new Date())
 }

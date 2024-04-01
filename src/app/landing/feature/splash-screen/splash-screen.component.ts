@@ -9,12 +9,12 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [TitleComponent, StartButtonComponent, ToggleThemeComponent],
   templateUrl: './splash-screen.component.html',
-  styleUrl: './splash-screen.component.scss'
+  styleUrl: './splash-screen.component.scss',
 })
 export class SplashScreenComponent {
-  constructor(private router: Router){};
+  constructor(private router: Router) {}
 
-  navigateToAuth() : void {
-    this.router.navigate(['/auth'])
+  navigateToAuth(): void {
+    this.router.navigate(['/login']);
   }
 }

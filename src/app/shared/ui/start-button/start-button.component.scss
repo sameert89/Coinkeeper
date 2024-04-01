@@ -1,18 +1,22 @@
-
-.start-button{
-    border-radius: 25px;
-    font-size: 1.2rem;
-    font-family: 'Clash Grotesk';
-    font-weight: 600;
-    width: 15vw;
-    margin-top: 2em;
-    padding: 1.5em;
-    background-color: var(--textColor) !important;
-    color: var(--bgColor) !important;
+.start-button {
+  border-radius: 25px;
+  font-size: 1.2rem;
+  font-family: "Clash Grotesk";
+  font-weight: 600;
+  width: 15vw;
+  margin-top: 2em;
+  padding: 1.5em;
 }
-
-@media(max-width: 1500px) {
-    .start-button{
-        width: 50vw;
-    }
+.enabled {
+  background-color: var(--textColor) !important;
+  color: var(--bgColor) !important;
+}
+.disabled {
+  color: lightgray !important;
+  background-color: gray !important;
+}
+@media (max-width: 1500px) {
+  .start-button {
+    width: 50vw;
+  }
 }
