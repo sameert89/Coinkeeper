@@ -1,16 +1,14 @@
 <div class="budget-details-container">
   <div class="inner-container">
     <p>Monthly Budget</p>
-  <h2 class="spent">{{totalSpent}} </h2>
-  <hr>
-  <h2 class="budget">{{budget}}</h2>
+    <h2 class="spent">{{ budgetInfo.totalSpent }}</h2>
+    <hr />
+    <h2 class="budget">{{ budgetInfo.budget }}</h2>
   </div>
-  <div class = 'vertical-rule'></div>
+  <div class="vertical-rule"></div>
   <div class="inner-container">
     <p>Top Category</p>
-  <mat-icon>{{topCategoryIcon}}</mat-icon>
-  <p>{{topCategoryName}}</p>
+    <mat-icon>{{ categories.get(budgetInfo.topCategoryName) }}</mat-icon>
+    <p>{{ budgetInfo.topCategoryName }}</p>
   </div>
-  
-  
 </div>
