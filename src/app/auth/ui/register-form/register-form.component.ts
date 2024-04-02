@@ -11,6 +11,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { AuthService } from '../../data-access/auth.service';
+import { RegisterFormModel } from '../../data-access/register-form.model';
 @Component({
   selector: 'app-register-form',
   standalone: true,
@@ -26,7 +28,11 @@ import {
   styleUrl: './register-form.component.scss',
 })
 export class RegisterFormComponent {
-  constructor(private router: Router, private _snackBar: MatSnackBar) {}
+  constructor(
+    private router: Router,
+    private _snackBar: MatSnackBar,
+    private authService: AuthService
+  ) {}
   title: string = 'Register';
   email: string = '';
   name: string = '';
@@ -34,10 +40,25 @@ export class RegisterFormComponent {
   confirmPassword: string = '';
   registerForm!: FormGroup;
   registerUser(): void {
-    this._snackBar.open('Registered Successfuly Please Login', 'Close', {
-      duration: 2000,
+    let registrationData = new RegisterFormModel(
+      this.registerForm.value.name,
+      this.registerForm.value.email,
+      this.registerForm.value.password
+    );
+    console.log(registrationData);
+    this.authService.registerUser(registrationData).subscribe({
+      next: () => {
+        this._snackBar.open('Registered Successfuly Please Login', 'Close', {
+          duration: 2000,
+        });
+        setTimeout(() => this.router.navigate(['/login']), 2000);
+      },
+      error: (error) => {
+        this._snackBar.open('Error Registering', 'Close', {
+          duration: 2000,
+        });
+      },
     });
-    setTimeout(() => this.router.navigate(['/login']), 2000);
   }
   ngOnInit() {
     this.registerForm = new FormGroup({
