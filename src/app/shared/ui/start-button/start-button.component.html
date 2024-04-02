@@ -1,1 +1,10 @@
-<button mat-flat-button class="start-button" (click)="handleClick()">{{buttonTitle}} <mat-icon>arrow_right_alt</mat-icon></button>
+<button
+  type="submit"
+  mat-flat-button
+  class="start-button"
+  [ngClass]="{ disabled: disabled, enabled: !disabled }"
+  [disabled]="disabled"
+  (click)="handleClick()"
+>
+  {{ buttonTitle }} <mat-icon>arrow_right_alt</mat-icon>
+</button>

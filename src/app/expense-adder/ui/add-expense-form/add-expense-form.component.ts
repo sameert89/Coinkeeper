@@ -44,6 +44,7 @@ export class AddExpenseFormComponent {
     value: 0,
     date: new Date(),
   };
+  speechDataFromDialog = '';
 
   expenseFormGroup = new FormGroup({
     expenseName: new FormControl(this.expenseFormData.expenseName, [
@@ -61,15 +62,12 @@ export class AddExpenseFormComponent {
   openDialog(): void {
     const dialogRef = this.dialog.open(SpeechInputDialogComponent, {
       width: '30em',
-      data: {
-        name: this.expenseFormData.expenseName,
-        animal: this.expenseFormData.category,
-      },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
-      this.expenseFormData.expenseName = result;
+      this.speechDataFromDialog = result;
+      console.log(this.speechDataFromDialog);
     });
   }
 }

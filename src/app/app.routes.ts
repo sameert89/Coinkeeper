@@ -1,8 +1,9 @@
 import { Routes } from '@angular/router';
-import { AuthFormComponent } from './auth/ui/auth-form/auth-form.component';
+import { LoginFormComponent } from './auth/ui/login-form/login-form.component';
 import { SplashScreenComponent } from './landing/feature/splash-screen/splash-screen.component';
 import { DashboardContainerComponent } from './dashboard/feature/dashboard-container/dashboard-container.component';
 import { AddExpenseFormComponent } from './expense-adder/ui/add-expense-form/add-expense-form.component';
+import { RegisterFormComponent } from './auth/ui/register-form/register-form.component';
 
 export const routes: Routes = [
   {
@@ -11,9 +12,14 @@ export const routes: Routes = [
     data: { animation: 'splashPage' },
   },
   {
-    path: 'auth',
-    component: AuthFormComponent,
-    data: { animation: 'authPage' },
+    path: 'login',
+    component: LoginFormComponent,
+    data: { animation: 'loginPage' },
+  },
+  {
+    path: 'register',
+    component: RegisterFormComponent,
+    data: { animation: 'registerPage' },
   },
   {
     path: 'dashboard',

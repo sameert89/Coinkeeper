@@ -1,79 +1,102 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Subject } from 'rxjs';
 declare var webkitSpeechRecognition: any;
-
 @Injectable({
   providedIn: 'root',
 })
 export class SpeechRecognitionService {
-  recognition = new webkitSpeechRecognition();
+  recognition: any;
   isStoppedSpeechRecog = false;
-  private textSource = new BehaviorSubject<string>('');
-  currentText = this.textSource.asObservable();
   public text = '';
-  tempWords: any;
-  transcript_arr: string[] = [];
-  confidence_arr: string[] = [];
-  isStarted = false; //<< this Flag to check if the user stop the service
-  isStoppedAutomatically = true; //<< this Flag to check if the service stopped automaticically.
+  private voiceToTextSubject: Subject<string> = new Subject();
+  private speakingPaused: Subject<any> = new Subject();
+  private tempWords: string = '';
   constructor() {}
 
+  /**
+   * @description Function to return observable so voice sample text can be sent to input.
+   */
+  speechInput() {
+    return this.voiceToTextSubject.asObservable();
+  }
+
+  /**
+   * @description Function to initialize voice recognition.
+   */
   init() {
-    this.recognition.continuous = true;
+    this.recognition = new webkitSpeechRecognition();
     this.recognition.interimResults = true;
-    this.recognition.lang = 'en-IN';
+    this.recognition.lang = 'en-US';
 
     this.recognition.addEventListener('result', (e: any) => {
       const transcript = Array.from(e.results)
         .map((result: any) => result[0])
         .map((result) => result.transcript)
         .join('');
-      this.transcript_arr.push(transcript);
       this.tempWords = transcript;
-      this.textSource.next(this.text + ' ' + this.tempWords);
-      console.log(this.transcript_arr);
-
-      const confidence = Array.from(e.results)
-        .map((result: any) => result[0])
-        .map((result) => result.confidence)
-        .join('');
-      this.confidence_arr.push(confidence);
-      console.log(this.confidence_arr);
+      this.voiceToTextSubject.next(this.text || transcript);
     });
-
-    this.recognition.addEventListener('end', (condition: any) => {
-      this.wordConcat();
-      if (this.isStoppedAutomatically) {
-        this.recognition.stop();
-        console.log('stopped automatically!!');
-        this.recognition.start();
-        console.log('started automatically!!');
-        this.isStoppedAutomatically = true;
-      }
-    });
+    this.initListeners();
   }
 
-  start() {
-    if (!this.isStarted) {
-      this.recognition.start();
-      this.isStarted = true;
-      console.log('Speech recognition started');
-    }
-    return true;
-  }
-  stop() {
-    if (this.isStarted) {
-      this.isStoppedAutomatically = false;
-      this.wordConcat();
+  /**
+   * @description Add event listeners to get the updated input and when stoped
+   */
+  initListeners() {
+    this.recognition.addEventListener('end', () => {
       this.recognition.stop();
-      this.isStarted = false;
-      console.log('End speech recognition by user');
-    }
-    return false;
+    });
   }
 
+  /**
+   * @description Function to mic on to listen.
+   */
+  start() {
+    this.text = '';
+    this.isStoppedSpeechRecog = false;
+    this.recognition.start();
+    this.recognition.addEventListener('end', (condition: any) => {
+      if (this.isStoppedSpeechRecog) {
+        this.recognition.isActive = true;
+        this.recognition.stop();
+      } else {
+        this.isStoppedSpeechRecog = false;
+        this.wordConcat();
+        // Checked time with last api call made time so we can't have multiple start action within 200ms for countinious listening
+        // Fixed : ERROR DOMException: Failed to execute 'start' on 'SpeechRecognition': recognition has already started.
+        if (
+          !this.recognition.lastActiveTime ||
+          Date.now() - this.recognition.lastActive > 200
+        ) {
+          this.recognition.start();
+          this.recognition.lastActive = Date.now();
+        }
+      }
+      this.voiceToTextSubject.next(this.text);
+    });
+  }
+
+  /**
+   * @description Function to stop recognition.
+   */
+  stop() {
+    this.text = '';
+    this.isStoppedSpeechRecog = true;
+    this.wordConcat();
+    this.recognition.stop();
+    this.recognition.isActive = false;
+    this.speakingPaused.next('Stopped speaking');
+  }
+
+  speechPaused() {
+    return this.speakingPaused.asObservable();
+  }
+  /**
+   * @description Merge previous input with latest input.
+   */
   wordConcat() {
-    this.text = this.text + ' ' + this.tempWords + '.';
+    this.text = this.text.trim() + ' ' + this.tempWords;
+    this.text = this.text.trim();
     this.tempWords = '';
   }
 }
