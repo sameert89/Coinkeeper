@@ -16,7 +16,7 @@ export class AuthService {
   };
   loginUser(formData: LoginFormModel): Observable<boolean> {
     return this._http
-      .post<LoginFormModel>(apiUri + 'login', formData, this.options)
+      .post<LoginFormModel>(apiUri + 'auth/login', formData, this.options)
       .pipe(
         map((response) => true),
         catchError((error) => {
@@ -27,7 +27,7 @@ export class AuthService {
   }
   registerUser(formData: RegisterFormModel): Observable<boolean> {
     return this._http
-      .post<RegisterFormModel>(apiUri + 'register', formData, this.options)
+      .post<RegisterFormModel>(apiUri + 'auth/register', formData, this.options)
       .pipe(
         map((response) => true),
         catchError((error) => {
@@ -37,12 +37,13 @@ export class AuthService {
       );
   }
   isLoggedIn(): Observable<boolean> {
-    return this._http.get(apiUri + 'session-validate', this.options).pipe(
-      map((response) => true),
-      catchError((error) => {
-        console.log(error);
-        return of(false);
-      })
-    );
+    // return this._http.get(apiUri + 'auth/session-validate', this.options).pipe(
+    //   map((response) => true),
+    //   catchError((error) => {
+    //     console.log(error);
+    //     return of(false);
+    //   })
+    // );
+    return of(true);
   }
 }
