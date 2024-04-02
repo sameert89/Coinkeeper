@@ -1,5 +1,5 @@
 .dialog-container {
-  background-color: var(--bgColor); /* Make sure --bgColor is defined */
+  background-color: var(--bgColor);
   font-family: "Clash Grotesk";
   display: flex;
   flex-direction: column;
@@ -84,5 +84,4 @@ textarea {
 .mat-icon-button {
   z-index: 1; /* Ensures the button is above the animated pseudo-element */
   position: relative;
-  /* Continue with your existing .mat-icon-button styles */
 }
