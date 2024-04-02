@@ -20,7 +20,7 @@ export class AuthService {
       .pipe(
         map((response) => true),
         catchError((error) => {
-          console.log(error);
+          // console.log(error);
           return of(false);
         })
       );
@@ -31,19 +31,19 @@ export class AuthService {
       .pipe(
         map((response) => true),
         catchError((error) => {
-          console.log(error);
+          // console.log(error);
           return of(false);
         })
       );
   }
   isLoggedIn(): Observable<boolean> {
-    // return this._http.get(apiUri + 'auth/session-validate', this.options).pipe(
-    //   map((response) => true),
-    //   catchError((error) => {
-    //     console.log(error);
-    //     return of(false);
-    //   })
-    // );
+    return this._http.get(apiUri + 'auth/session-validate', this.options).pipe(
+      map((response) => true),
+      catchError((error) => {
+        //console.log(error);
+        return of(false);
+      })
+    );
     return of(true);
   }
 }

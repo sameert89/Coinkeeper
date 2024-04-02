@@ -1,10 +1,15 @@
-<div class="login-form-container">
+<form [formGroup]="loginForm" class="login-form-container">
   <h2>
     <strong>{{ title }}</strong>
   </h2>
   <mat-form-field appearance="outline">
-    <mat-label class="input-label">Username</mat-label>
-    <input class="login-form-input" matInput placeholder="Username" />
+    <mat-label class="input-label">Email</mat-label>
+    <input
+      class="login-form-input"
+      matInput
+      placeholder="Email"
+      formControlName="email"
+    />
     <mat-icon matSuffix>person</mat-icon>
   </mat-form-field>
   <mat-form-field class="auth-input" appearance="outline">
@@ -14,6 +19,7 @@
       type="password"
       matInput
       placeholder="Password"
+      formControlName="password"
     />
     <mat-icon matSuffix>vpn_key</mat-icon>
   </mat-form-field>
@@ -22,7 +28,7 @@
     <a routerLink="/register" routerLinkActive="active">Register</a>
   </p>
   <app-start-button
-    (clicked)="navigateToDashboard()"
+    (clicked)="loginUser()"
     [buttonTitle]="'Continue'"
   ></app-start-button>
-</div>
+</form>

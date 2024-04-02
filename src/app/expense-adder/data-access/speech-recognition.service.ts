@@ -26,7 +26,7 @@ export class SpeechRecognitionService {
   init() {
     this.recognition = new webkitSpeechRecognition();
     this.recognition.interimResults = true;
-    this.recognition.lang = 'en-US';
+    this.recognition.lang = 'en-IN';
 
     this.recognition.addEventListener('result', (e: any) => {
       const transcript = Array.from(e.results)

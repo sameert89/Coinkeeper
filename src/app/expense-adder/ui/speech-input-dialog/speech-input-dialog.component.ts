@@ -13,9 +13,8 @@ import {
 } from '@angular/material/dialog';
 import { Inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { Subscription } from 'rxjs';
 import { TextFieldModule } from '@angular/cdk/text-field';
-import { SpeechRecognitionService } from '../../../data-access/speech-recognition.service';
+import { SpeechRecognitionService } from '../../data-access/speech-recognition.service';
 @Component({
   selector: 'app-speech-input-dialog',
   standalone: true,

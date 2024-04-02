@@ -22,7 +22,10 @@ export class PermissionService {
     return this.authService.isLoggedIn().pipe(
       map((isValid) => {
         const isLoginRoute = state.url.includes('/login');
-
+        const isRegisterRoute = state.url.includes('/register');
+        if (!isValid && isRegisterRoute) {
+          return true;
+        }
         if (isValid && isLoginRoute) {
           // User is already logged in and trying to access the login page, redirect to dashboard
           this.router.navigate(['/dashboard']);

@@ -17,12 +17,14 @@
     <mat-label class="input-label"> Category </mat-label>
     <mat-select
       class="selector"
-      [(value)]="expenseFormData.category"
+      formControlName="category"
       name="expense-selector"
     >
-      @for (category of categories; track $index) {
-      <mat-option value="$index">{{ category[0] }}</mat-option>
-      }
+      <mat-option
+        *ngFor="let category of categories; let i = index"
+        [value]="category"
+        >{{ category }}</mat-option
+      >
     </mat-select>
     <mat-icon matSuffix>category</mat-icon>
   </mat-form-field>
@@ -43,10 +45,10 @@
   <mat-form-field appearance="outline">
     <mat-label class="input-label"> Date of Transaction </mat-label>
     <input
+      formControlName="date"
       matInput
       [matDatepicker]="picker"
       placeholder="MM/DD/YY"
-      formControlName="date"
     />
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>

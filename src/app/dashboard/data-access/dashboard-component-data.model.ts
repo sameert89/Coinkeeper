@@ -5,4 +5,14 @@ export class DashboardComponentDataModel {
   budgetInfo!: BudgetInfoComponentDataModel;
   chartData!: ExpenseClassificationChartDataModel[];
   categorywiseExpenditureValues!: number[];
+
+  constructor(
+    budgetInfo: BudgetInfoComponentDataModel,
+    chartData: ExpenseClassificationChartDataModel[],
+    categorywiseExpenditureValues: number[]
+  ) {
+    this.budgetInfo = budgetInfo;
+    this.chartData = chartData;
+    this.categorywiseExpenditureValues = categorywiseExpenditureValues;
+  }
 }

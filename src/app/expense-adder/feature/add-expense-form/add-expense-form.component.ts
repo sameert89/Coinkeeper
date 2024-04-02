@@ -9,14 +9,17 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NavbarComponent } from '../../../dashboard/feature/navbar/navbar.component';
-import { SpeechInputDialogComponent } from './speech-input-dialog/speech-input-dialog.component';
+import { SpeechInputDialogComponent } from '../../ui/speech-input-dialog/speech-input-dialog.component';
 import {
   FormGroup,
   FormControl,
   ReactiveFormsModule,
   Validators,
+  FormsModule,
 } from '@angular/forms';
 import { ExpenseFormDataModel } from '../../data-access/expense-form-data.model';
+import { SpeechDataInterpreterWebService } from '../../data-access/speech-data-interpreter-web.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-expense-form',
@@ -31,20 +34,21 @@ import { ExpenseFormDataModel } from '../../data-access/expense-form-data.model'
     MatLabel,
     MatInputModule,
     ReactiveFormsModule,
+    FormsModule,
+    CommonModule,
   ],
   templateUrl: './add-expense-form.component.html',
   styleUrl: './add-expense-form.component.scss',
   providers: [provideNativeDateAdapter()],
 })
 export class AddExpenseFormComponent {
-  categories: Map<string, string> = categories;
+  categories: string[] = Array.from(categories.keys());
   expenseFormData: ExpenseFormDataModel = {
-    category: this.categories.keys().next().value,
+    category: 'Emergency',
     expenseName: '',
     value: 0,
     date: new Date(),
   };
-  speechDataFromDialog = '';
 
   expenseFormGroup = new FormGroup({
     expenseName: new FormControl(this.expenseFormData.expenseName, [
@@ -54,10 +58,14 @@ export class AddExpenseFormComponent {
       Validators.required,
       Validators.min(1),
     ]),
+    category: new FormControl(this.expenseFormData.category),
     date: new FormControl(this.expenseFormData.date),
   });
 
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    public dialog: MatDialog,
+    private speechDataInterpreter: SpeechDataInterpreterWebService
+  ) {}
 
   openDialog(): void {
     const dialogRef = this.dialog.open(SpeechInputDialogComponent, {
@@ -66,8 +74,22 @@ export class AddExpenseFormComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
-      this.speechDataFromDialog = result;
-      console.log(this.speechDataFromDialog);
+      if (result != '') this.fillFormFromVoice(result);
     });
   }
+  fillFormFromVoice(speechText: string): void {
+    this.speechDataInterpreter.interpretData(speechText).subscribe({
+      next: ({ interpretedData }) => {
+        if (interpretedData.search('null') != -1) return;
+        const dataArray = interpretedData.split(',');
+        console.log(dataArray);
+        this.expenseFormGroup.patchValue({
+          expenseName: dataArray[1],
+          value: parseInt(dataArray[2]),
+          category: dataArray[0],
+        });
+      },
+    });
+  }
+  // For the dumb mat select
 }
