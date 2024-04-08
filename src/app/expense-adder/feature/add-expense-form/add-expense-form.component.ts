@@ -1,25 +1,28 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { categories } from '../../../shared/utils/constants';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { provideNativeDateAdapter } from '@angular/material/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 import { NavbarComponent } from '../../../dashboard/feature/navbar/navbar.component';
-import { SpeechInputDialogComponent } from '../../ui/speech-input-dialog/speech-input-dialog.component';
-import {
-  FormGroup,
-  FormControl,
-  ReactiveFormsModule,
-  Validators,
-  FormsModule,
-} from '@angular/forms';
-import { ExpenseFormDataModel } from '../../data-access/expense-form-data.model';
+import { categories } from '../../../shared/utils/constants';
+import { AddExpenseService } from '../../data-access/add-expense.service';
 import { SpeechDataInterpreterWebService } from '../../data-access/speech-data-interpreter-web.service';
-import { CommonModule } from '@angular/common';
+import { TransactionDataModel } from '../../data-access/transaction-data.model';
+import { SpeechInputDialogComponent } from '../../ui/speech-input-dialog/speech-input-dialog.component';
 
 @Component({
   selector: 'app-add-expense-form',
@@ -43,18 +46,18 @@ import { CommonModule } from '@angular/common';
 })
 export class AddExpenseFormComponent {
   categories: string[] = Array.from(categories.keys());
-  expenseFormData: ExpenseFormDataModel = {
+  expenseFormData: TransactionDataModel = {
     category: 'Emergency',
-    expenseName: '',
-    value: 0,
+    description: '',
+    amount: 0,
     date: new Date(),
   };
 
   expenseFormGroup = new FormGroup({
-    expenseName: new FormControl(this.expenseFormData.expenseName, [
+    description: new FormControl(this.expenseFormData.description, [
       Validators.required,
     ]),
-    value: new FormControl(this.expenseFormData.value, [
+    amount: new FormControl(this.expenseFormData.amount, [
       Validators.required,
       Validators.min(1),
     ]),
@@ -64,7 +67,9 @@ export class AddExpenseFormComponent {
 
   constructor(
     public dialog: MatDialog,
-    private speechDataInterpreter: SpeechDataInterpreterWebService
+    private speechDataInterpreter: SpeechDataInterpreterWebService,
+    private addExpenseService: AddExpenseService,
+    private snackBar: MatSnackBar
   ) {}
 
   openDialog(): void {
@@ -84,12 +89,31 @@ export class AddExpenseFormComponent {
         const dataArray = interpretedData.split(',');
         console.log(dataArray);
         this.expenseFormGroup.patchValue({
-          expenseName: dataArray[1],
-          value: parseInt(dataArray[2]),
+          description: dataArray[1],
+          amount: parseInt(dataArray[2]),
           category: dataArray[0],
         });
       },
     });
   }
-  // For the dumb mat select
+  createTransaction(): void {
+    const data = new TransactionDataModel(
+      this.expenseFormGroup.value.description!,
+      this.expenseFormGroup.value.category!,
+      this.expenseFormGroup.value.amount!,
+      this.expenseFormGroup.value.date!
+    );
+    this.addExpenseService.createTransaction(data).subscribe({
+      next: (response) => {
+        this.snackBar.open('Transaction Added Succesfully ✅', 'Close');
+      },
+      error: (error) => {
+        this.snackBar.open(
+          'Could not add transaction, please check your network ❌',
+          'Close'
+        );
+        console.log(error);
+      },
+    });
+  }
 }

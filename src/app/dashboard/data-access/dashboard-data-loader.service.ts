@@ -1,11 +1,11 @@
+import { catchError, map, Observable } from 'rxjs';
+
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { apiUri } from '../../shared/utils/constants';
-import { Observable, catchError, map } from 'rxjs';
-import { DashboardComponentDataModel } from './dashboard-component-data.model';
 
-import { categories } from '../../shared/utils/constants';
+import { apiUri, categories } from '../../shared/utils/constants';
 import { BudgetInfoComponentDataModel } from './budget-info-component-data.model';
+import { DashboardComponentDataModel } from './dashboard-component-data.model';
 import { ExpenseClassificationChartDataModel } from './expense-classification-chart-data.model';
 
 @Injectable({
@@ -71,7 +71,6 @@ export class DashboardDataLoaderService {
       .pipe(
         map((response) => this.cleanData(response)),
         catchError((error) => {
-          // console.log(error);
           throw error;
         })
       );

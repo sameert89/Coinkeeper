@@ -7,7 +7,7 @@
     <input
       matInput
       placeholder="What was the expense?"
-      formControlName="expenseName"
+      formControlName="description"
       required
     />
     <mat-icon matSuffix>help_outline</mat-icon>
@@ -37,7 +37,7 @@
       step="any"
       matInput
       placeholder="How much was expense?"
-      formControlName="value"
+      formControlName="amount"
       required
     />
     <mat-icon matSuffix>monetization_on</mat-icon>
@@ -62,7 +62,14 @@
     >
       <mat-icon>mic</mat-icon>
     </button>
-    <button class="form-button" type="button" mat-icon-button>
+    <button
+      [disabled]="!expenseFormGroup.valid"
+      class="form-button"
+      [ngClass]="{ gray: !expenseFormGroup.valid }"
+      type="button"
+      mat-icon-button
+      (click)="createTransaction()"
+    >
       <mat-icon>add</mat-icon>
     </button>
   </div>

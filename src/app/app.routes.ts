@@ -6,6 +6,7 @@ import { AddExpenseFormComponent } from './expense-adder/feature/add-expense-for
 import { RegisterFormComponent } from './auth/ui/register-form/register-form.component';
 import { AuthGuard } from './auth/feature/auth.guard';
 import { FaqComponent } from './help/ui/faq/faq.component';
+import { TransactionContainerComponent } from './transactions/feature/transaction-container/transaction-container.component';
 
 export const routes: Routes = [
   {
@@ -41,5 +42,10 @@ export const routes: Routes = [
     path: 'help',
     component: FaqComponent,
     data: { animation: 'faqPage' },
+  },
+  {
+    path: 'transactions',
+    component: TransactionContainerComponent,
+    data: { animation: 'transactionsPage' },
   },
 ];

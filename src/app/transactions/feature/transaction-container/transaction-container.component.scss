@@ -1,0 +1,35 @@
+.transactions-table {
+  min-width: 0;
+  font-family: "Clash Grotesk", sans-serif !important;
+  color: var(--textColor);
+  width: 100%;
+}
+.container {
+  display: flex;
+  height: 100svh;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 8em;
+  flex-direction: column;
+  min-width: 0;
+  width: 80vw;
+}
+.table-row {
+  background-color: var(--bgColor) !important;
+  color: var(--textColor) !important;
+}
+h1 {
+  font-weight: bold;
+  font-size: 2.5rem;
+  margin-bottom: 1em;
+}
+
+@media (max-width: 768px) {
+  .container {
+    transform: scale(0.9);
+  }
+}
+.mat-mdc-header-cell {
+  background-color: var(--textColor) !important;
+  color: var(--bgColor) !important;
+}
