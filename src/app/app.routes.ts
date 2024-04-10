@@ -1,12 +1,22 @@
 import { Routes } from '@angular/router';
-import { LoginFormComponent } from './auth/ui/login-form/login-form.component';
-import { SplashScreenComponent } from './landing/feature/splash-screen/splash-screen.component';
-import { DashboardContainerComponent } from './dashboard/feature/dashboard-container/dashboard-container.component';
-import { AddExpenseFormComponent } from './expense-adder/feature/add-expense-form/add-expense-form.component';
-import { RegisterFormComponent } from './auth/ui/register-form/register-form.component';
+
 import { AuthGuard } from './auth/feature/auth.guard';
+import { LoginFormComponent } from './auth/ui/login-form/login-form.component';
+import { RegisterFormComponent } from './auth/ui/register-form/register-form.component';
+import {
+    DashboardContainerComponent
+} from './dashboard/feature/dashboard-container/dashboard-container.component';
+import {
+    AddExpenseFormComponent
+} from './expense-adder/feature/add-expense-form/add-expense-form.component';
 import { FaqComponent } from './help/ui/faq/faq.component';
-import { TransactionContainerComponent } from './transactions/feature/transaction-container/transaction-container.component';
+import { SplashScreenComponent } from './landing/feature/splash-screen/splash-screen.component';
+import {
+    ProfileContainerComponent
+} from './profile/feature/profile-container/profile-container.component';
+import {
+    TransactionContainerComponent
+} from './transactions/feature/transaction-container/transaction-container.component';
 
 export const routes: Routes = [
   {
@@ -47,5 +57,10 @@ export const routes: Routes = [
     path: 'transactions',
     component: TransactionContainerComponent,
     data: { animation: 'transactionsPage' },
+  },
+  {
+    path: 'profile',
+    component: ProfileContainerComponent,
+    data: { animation: 'profilePage' },
   },
 ];

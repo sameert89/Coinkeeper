@@ -1,6 +1,7 @@
+import { BehaviorSubject } from 'rxjs';
+
 // mode.service.ts
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ export class ToggleThemeService {
 
   constructor() {}
 
-  toggleMode(){
+  toggleMode() {
     this.modeSubject.next(this.modeSubject.value == 'light' ? 'dark' : 'light');
   }
   getMode() {

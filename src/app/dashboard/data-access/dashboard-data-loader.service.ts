@@ -12,15 +12,8 @@ import { ExpenseClassificationChartDataModel } from './expense-classification-ch
   providedIn: 'root',
 })
 export class DashboardDataLoaderService {
-  options = {
-    withCredentials: true,
-    params: new HttpParams()
-      .set('month', new Date().getMonth() + 1)
-      .set('year', new Date().getFullYear()),
-  };
   constructor(private http: HttpClient) {}
   private cleanData(data: any): DashboardComponentDataModel {
-    console.log(data);
     const initialAcc = Array.from(categories.keys()).reduce(
       (acc: any, category) => {
         acc[category] = 0;
@@ -65,9 +58,14 @@ export class DashboardDataLoaderService {
       categorywiseExpenditureValues
     );
   }
-  fetchData(): Observable<DashboardComponentDataModel> {
+  fetchData(date: Date): Observable<DashboardComponentDataModel> {
     return this.http
-      .get(apiUri + 'categorywise-expenditure', this.options)
+      .get(apiUri + 'categorywise-expenditure', {
+        withCredentials: true,
+        params: new HttpParams()
+          .set('month', date.getMonth() + 1)
+          .set('year', date.getFullYear()),
+      })
       .pipe(
         map((response) => this.cleanData(response)),
         catchError((error) => {

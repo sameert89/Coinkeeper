@@ -26,10 +26,38 @@ h1 {
 
 @media (max-width: 768px) {
   .container {
-    transform: scale(0.9);
+    transform: scale(0.8);
+    width: none;
+  }
+  mat-paginator {
+    width: 100vw !important;
+  }
+  .paginator-container {
+    flex-direction: column;
   }
 }
 .mat-mdc-header-cell {
   background-color: var(--textColor) !important;
   color: var(--bgColor) !important;
+}
+.mat-icon-button {
+  border-radius: 50% !important;
+}
+
+::ng-deep.mat-mdc-paginator .mat-mdc-paginator-container {
+  flex-wrap: nowrap;
+}
+.mat-mdc-paginator {
+  margin: 0.5em 0;
+}
+::ng-deep.mat-mdc-form-field-subscript-wrapper {
+  height: 0;
+}
+.paginator-container {
+  display: flex;
+  background-color: white;
+  color: black;
+}
+mat-form-field {
+  margin: 0.5em;
 }

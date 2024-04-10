@@ -1,6 +1,35 @@
 <div class="budget-details-container">
   <div class="inner-container">
-    <p>Monthly Budget</p>
+    <p>Month</p>
+    <!-- <input matInput class="datepicker" [matDatepicker]="picker" />
+    <mat-datepicker startView="year" #picker></mat-datepicker> -->
+
+    <input
+      matInput
+      [matDatepicker]="dp2"
+      [max]="today"
+      placeholder="Select a Date"
+    />
+    <!-- <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle> -->
+    <mat-datepicker
+      #dp2
+      startView="multi-year"
+      (monthSelected)="closeDatePicker($event, dp2)"
+    ></mat-datepicker>
+
+    <button mat-icon-button (click)="openDatePicker(dp2)">
+      <mat-icon>date_range</mat-icon>
+    </button>
+    <p>
+      {{ date.toLocaleString('en-US', {
+      month: 'long',
+      year: 'numeric',
+    }) }}
+    </p>
+  </div>
+  <div class="vertical-rule"></div>
+  <div class="inner-container">
+    <p>Budget</p>
     <h2 class="spent">{{ budgetInfo.totalSpent }}</h2>
     <hr />
     <h2 class="budget">

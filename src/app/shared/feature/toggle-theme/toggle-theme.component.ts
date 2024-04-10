@@ -1,8 +1,9 @@
+import { DOCUMENT } from '@angular/common';
 // toggle-theme.component.ts
 import { Component, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+
 import { ToggleThemeService } from '../../utils/toggle-theme.service';
 
 @Component({
@@ -10,17 +11,20 @@ import { ToggleThemeService } from '../../utils/toggle-theme.service';
   standalone: true,
   imports: [MatIconModule, MatButtonModule],
   templateUrl: './toggle-theme.component.html',
-  styleUrls: ['./toggle-theme.component.scss']
+  styleUrls: ['./toggle-theme.component.scss'],
 })
 export class ToggleThemeComponent {
   themeIcon: string = 'wb_sunny';
 
-  constructor(@Inject(DOCUMENT) private document: Document, private toggleThemeService: ToggleThemeService) {
-    this.setInitialTheme();
-  }
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+    private toggleThemeService: ToggleThemeService
+  ) {}
 
   toggleTheme() {
-    const currentTheme = this.document.body.classList.contains('dark') ? 'dark' : 'light';
+    const currentTheme = this.document.body.classList.contains('dark')
+      ? 'dark'
+      : 'light';
     if (currentTheme === 'dark') {
       this.document.body.classList.remove('dark');
       this.document.body.classList.add('light');
@@ -31,12 +35,5 @@ export class ToggleThemeComponent {
       this.themeIcon = 'brightness_3'; // Show icon for light mode switch
     }
     this.toggleThemeService.toggleMode();
-  }
-
-  setInitialTheme() {
-    if(!this.document.body.classList.contains('light') && !this.document.body.classList.contains('dark')){
-      this.document.body.classList.add('light');
-      this.toggleThemeService.toggleMode();
-    }
   }
 }

@@ -1,11 +1,17 @@
+import { Subscription } from 'rxjs';
+
+import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterOutlet, RouterLink } from '@angular/router';
-import { ChildrenOutletContexts } from '@angular/router';
-import { slideInAnimation, fader } from './animations';
+import {
+  ChildrenOutletContexts,
+  RouterLink,
+  RouterOutlet,
+} from '@angular/router';
+
+import { fader, slideInAnimation } from './animations';
 import { SplashScreenComponent } from './landing/feature/splash-screen/splash-screen.component';
 import { ToggleThemeComponent } from './shared/feature/toggle-theme/toggle-theme.component';
 import { ToggleThemeService } from './shared/utils/toggle-theme.service';
-import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -23,16 +29,20 @@ import { NgIf } from '@angular/common';
 })
 export class AppComponent {
   title = 'Coinkeeper';
-  mode: string = 'cool';
+  mode: string = 'dark';
+  themeSubscription!: Subscription;
 
   constructor(
     private toggleThemeService: ToggleThemeService,
     private contexts: ChildrenOutletContexts
   ) {}
   ngOnInit() {
-    this.toggleThemeService.mode$.subscribe((mode) => {
+    this.themeSubscription = this.toggleThemeService.mode$.subscribe((mode) => {
       this.mode = mode;
     });
+  }
+  ngOnDestroy() {
+    this.themeSubscription.unsubscribe();
   }
   getRouteAnimationData() {
     return this.contexts.getContext('primary')?.route?.snapshot?.data?.[

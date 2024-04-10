@@ -1,9 +1,12 @@
-<div class="dashboard-container">
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div class="dashboard-container" *ngIf="!isLoading">
   <app-budget-info
     [budgetInfo]="dashboardComponentData.budgetInfo"
+    (dateChangeEvent)="updateDashboard($event)"
   ></app-budget-info>
   <app-expense-classification-chart
     [chartData]="dashboardComponentData.chartData"
+    [totalSpent]="dashboardComponentData.budgetInfo.totalSpent"
   ></app-expense-classification-chart>
   <app-category-expenditure-grid
     [values]="dashboardComponentData.categorywiseExpenditureValues"

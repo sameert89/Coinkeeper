@@ -30,11 +30,16 @@ hr {
 h2 {
   margin: 0;
   font-weight: bold;
+  font-size: 1.1em;
 }
-.vertical-rule{
-    height: 6em;
-    width: 1px;
-    background-color: var(--textColor);
+.vertical-rule {
+  height: 7em;
+  width: 2px;
+  background-color: var(--textColor);
+  margin: 0 1.5em;
+}
+p {
+  margin-bottom: 0.5em;
 }
 .budget {
   color: rgb(0, 161, 0);
@@ -42,14 +47,22 @@ h2 {
 .spent {
   color: rgb(255, 54, 54);
 }
+input {
+  width: 0;
+  height: 0;
+  position: absolute;
+  border: none;
+}
 
 @media (max-width: 1024px) {
   .budget-details-container {
     border: 2px solid;
     border-radius: 10px;
     position: static;
-    transform: translate(0%);
-    margin-top: 25em;
+    transform: translate(0%, -40%);
     width: 60vw;
+  }
+  h2 {
+    font-size: 1em;
   }
 }

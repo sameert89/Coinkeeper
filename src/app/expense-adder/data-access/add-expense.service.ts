@@ -14,7 +14,6 @@ export class AddExpenseService {
   createTransaction(data: TransactionDataModel): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const body = JSON.stringify(data);
-    console.log(body);
     return this.http.post<any>(apiUri + 'transactions', JSON.parse(body), {
       headers: headers,
       withCredentials: true,

@@ -1,4 +1,11 @@
-<div class = "chart-container">
-    <h3>Expenditure</h3>
-    <div [autoResize]="false"   [theme]="theme" echarts [options]="chartOption" class="demo-chart"></div>
+<div class="chart-container">
+  <h3>Expenditure</h3>
+  <div
+    [autoResize]="false"
+    [theme]="theme"
+    echarts
+    [options]="chartOption"
+    [merge]="updatedOptions"
+    class="demo-chart"
+  ></div>
 </div>

@@ -4,9 +4,8 @@
   top: 20%;
   right: 2%;
 }
-.category-grid-container {
-  overflow: hidden;
-  height: 50vh;
+mat-grid-list {
+  padding-bottom: 1em !important;
 }
 h3 {
   font-family: "Clash Grotesk";
@@ -17,14 +16,13 @@ h3 {
   font-size: 1.5em;
 }
 
-@media(max-width: 1024px) {
-    .category-expenditure-grid{
-        position: static;
-        padding: 0 2em;
-        width: auto;
-    }
-    h3{
-
-        margin-bottom: -1em;
-    }
+@media (max-width: 1024px) {
+  .category-expenditure-grid {
+    position: static;
+    padding: 0 2em;
+    width: auto;
+  }
+  h3 {
+    margin-bottom: -1em;
+  }
 }
