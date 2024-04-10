@@ -1,3 +1,8 @@
 <div class="profile-container">
+  <form [formGroup]="userDataFormGroup">
+    <p>{{ this.userDataFormGroup.value.email }}</p>
+    <input formControlName="name" />
+    <input formControlName="email" />
+  </form>
   <app-navbar></app-navbar>
 </div>
