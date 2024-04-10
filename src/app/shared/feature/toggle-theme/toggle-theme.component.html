@@ -1,7 +1,7 @@
 <button
   mat-icon-button
   aria-label="Light and Dark Toggle Button"
-  (click)="toggleTheme()"
+  (click)="this.toggleThemeService.toggleMode()"
 >
   <mat-icon>{{ themeIcon }}</mat-icon>
 </button>

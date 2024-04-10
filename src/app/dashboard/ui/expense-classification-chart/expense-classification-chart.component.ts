@@ -64,10 +64,10 @@ export class ExpenseClassificationChartComponent implements OnChanges {
   }
   ngOnInit() {
     this.theme =
-      this.toggleThemeService.getMode() == 'dark' ? 'dark' : 'tech-blue';
+      this.toggleThemeService.getMode() === 'light' ? 'dark' : 'tech-blue';
     this.themeServiceSubscription = this.toggleThemeService.mode$.subscribe(
       (mode) => {
-        this.theme = mode == 'light' ? 'dark' : 'tech-blue';
+        this.theme = mode == 'dark' ? 'dark' : 'tech-blue';
       }
     );
   }
