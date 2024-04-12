@@ -1,11 +1,5 @@
 import { NgIf } from '@angular/common';
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { provideNativeDateAdapter } from '@angular/material/core';
@@ -19,8 +13,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 import { NavbarComponent } from '../../../dashboard/feature/navbar/navbar.component';
+import { LogoutComponent } from '../../../shared/feature/logout/logout.component';
 import { TransactionDataLoaderService } from '../../data-access/transaction-data-loader.service';
-import { TransactionEditDialogComponent } from '../../ui/transaction-edit-dialog/transaction-edit-dialog.component';
+import {
+    TransactionEditDialogComponent
+} from '../../ui/transaction-edit-dialog/transaction-edit-dialog.component';
 
 @Component({
   selector: 'app-transaction-container',
@@ -38,6 +35,7 @@ import { TransactionEditDialogComponent } from '../../ui/transaction-edit-dialog
     ReactiveFormsModule,
     MatProgressSpinnerModule,
     NgIf,
+    LogoutComponent
   ],
   templateUrl: './transaction-container.component.html',
   styleUrl: './transaction-container.component.scss',

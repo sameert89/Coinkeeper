@@ -1,11 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
-  FormControl,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
+    FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { provideNativeDateAdapter } from '@angular/material/core';
@@ -18,11 +14,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { NavbarComponent } from '../../../dashboard/feature/navbar/navbar.component';
+import { LogoutComponent } from '../../../shared/feature/logout/logout.component';
 import { categories } from '../../../shared/utils/constants';
 import { AddExpenseService } from '../../data-access/add-expense.service';
-import { SpeechDataInterpreterWebService } from '../../data-access/speech-data-interpreter-web.service';
+import {
+    SpeechDataInterpreterWebService
+} from '../../data-access/speech-data-interpreter-web.service';
 import { TransactionDataModel } from '../../data-access/transaction-data.model';
-import { SpeechInputDialogComponent } from '../../ui/speech-input-dialog/speech-input-dialog.component';
+import {
+    SpeechInputDialogComponent
+} from '../../ui/speech-input-dialog/speech-input-dialog.component';
 
 @Component({
   selector: 'app-add-expense-form',
@@ -39,6 +40,7 @@ import { SpeechInputDialogComponent } from '../../ui/speech-input-dialog/speech-
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
+    LogoutComponent
   ],
   templateUrl: './add-expense-form.component.html',
   styleUrl: './add-expense-form.component.scss',

@@ -1,20 +1,26 @@
 import { Component } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { NavbarComponent } from '../../../dashboard/feature/navbar/navbar.component';
 import { UserDataModel } from '../../../shared/data-access/user-data.model';
+import { LogoutComponent } from '../../../shared/feature/logout/logout.component';
 import { ProfileDataService } from '../../data-access/profile-data.service';
 
 @Component({
   selector: 'app-profile-container',
   standalone: true,
-  imports: [NavbarComponent, ReactiveFormsModule],
+  imports: [
+    NavbarComponent,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    LogoutComponent
+  ],
   templateUrl: './profile-container.component.html',
   styleUrl: './profile-container.component.scss',
 })
@@ -23,6 +29,8 @@ export class ProfileContainerComponent {
     private profileDataService: ProfileDataService,
     private snackbar: MatSnackBar
   ) {}
+  isEditing = false;
+  buttonText = 'Edit';
   userData: UserDataModel = {
     name: '',
     email: '',
@@ -51,21 +59,44 @@ export class ProfileContainerComponent {
     }),
   });
   ngOnInit() {
+    this.userDataFormGroup.disable();
     this.profileDataService.fetchProfileData().subscribe({
       next: (response) => {
-        this.userDataFormGroup.value.name = response.name;
-        this.userDataFormGroup.value.email = response.email;
-        this.userDataFormGroup.value.preferences!.budget =
-          response.preferences.budget;
-        this.userDataFormGroup.value.preferences!.defaultPage =
-          response.preferences.defaultPage;
-        this.userDataFormGroup.value.preferences!.customCategories =
-          response?.preferences?.customCategories || [];
+        console.log(response);
+        this.userDataFormGroup.setValue({
+          name: response.name,
+          email: response.email,
+          preferences: {
+            budget: response.preferences.budget,
+            defaultPage: response.preferences.defaultPage,
+            customCategories: response.preferences.customCategories || [],
+          },
+        });
       },
       error: (error) => {
         console.log(error);
       },
     });
+  }
+  private profile: string = '';
+  generateUserProfilePicUrl(): string {
+    if (!this.profile)
+      return (this.profile =
+        'https://api.dicebear.com/8.x/shapes/svg?seed=' +
+        this.userDataFormGroup.value.name);
+    else return this.profile;
+  }
+  handleEditButtonPress() {
+    if (!this.isEditing) {
+      this.userDataFormGroup.enable();
+      this.buttonText = 'Save';
+      this.isEditing = true;
+      // Make the call to update in the server
+    } else {
+      this.buttonText = 'Edit';
+      this.isEditing = false;
+      this.userDataFormGroup.disable();
+    }
   }
   // updateProfileData(): void {
   //   const updatedProfileData: UserDataModel = {

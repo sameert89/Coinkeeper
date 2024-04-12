@@ -57,10 +57,12 @@ export const routes: Routes = [
     path: 'transactions',
     component: TransactionContainerComponent,
     data: { animation: 'transactionsPage' },
+    canActivate: [AuthGuard]
   },
   {
     path: 'profile',
     component: ProfileContainerComponent,
     data: { animation: 'profilePage' },
+    canActivate: [AuthGuard]
   },
 ];

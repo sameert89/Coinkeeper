@@ -2,12 +2,17 @@ import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
+import { LogoutComponent } from '../../../shared/feature/logout/logout.component';
 import { BudgetInfoComponentDataModel } from '../../data-access/budget-info-component-data.model';
 import { DashboardComponentDataModel } from '../../data-access/dashboard-component-data.model';
 import { DashboardDataLoaderService } from '../../data-access/dashboard-data-loader.service';
 import { BudgetInfoComponent } from '../../ui/budget-info/budget-info.component';
-import { ExpenseClassificationChartComponent } from '../../ui/expense-classification-chart/expense-classification-chart.component';
-import { CategoryExpenditureGridComponent } from '../category-expenditure-grid/category-expenditure-grid.component';
+import {
+    ExpenseClassificationChartComponent
+} from '../../ui/expense-classification-chart/expense-classification-chart.component';
+import {
+    CategoryExpenditureGridComponent
+} from '../category-expenditure-grid/category-expenditure-grid.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
@@ -20,6 +25,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
     CategoryExpenditureGridComponent,
     MatProgressSpinnerModule,
     NgIf,
+    LogoutComponent
   ],
   templateUrl: './dashboard-container.component.html',
   styleUrl: './dashboard-container.component.scss',

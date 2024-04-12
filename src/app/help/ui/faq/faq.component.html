@@ -43,7 +43,7 @@
       </p>
     </mat-expansion-panel>
 
-    <mat-expansion-panel>
+    <!-- <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title> How can I add categories? </mat-panel-title>
       </mat-expansion-panel-header>
@@ -51,23 +51,23 @@
         Head to your dashboard and click on the + icon in the category list. It
         will automatically appear next time you are creating an expense.
       </p>
-    </mat-expansion-panel>
+    </mat-expansion-panel> -->
 
     <mat-expansion-panel>
       <mat-expansion-panel-header>
-        <mat-panel-title> How do I modify my transactions? </mat-panel-title>
+        <mat-panel-title> Can I remove a transaction? </mat-panel-title>
       </mat-expansion-panel-header>
       <p>
-        It can be easily done through the transactions tab of the website. Open
+        It can be easily done through the transactions tab of the webapp. Open
         the tab, and you will see your past transactions. You can change the
         date range to see the transactions in a specific period. Click on any
-        transaction to view, edit, or delete it.
+        transaction to remove it.
       </p>
     </mat-expansion-panel>
 
     <mat-expansion-panel>
       <mat-expansion-panel-header>
-        <mat-panel-title> What is the point of Coinkeeper? </mat-panel-title>
+        <mat-panel-title> Why do I need Coinkeeper? </mat-panel-title>
       </mat-expansion-panel-header>
       <p>
         In the ever-growing inflation era, it is very easy to not realize what
@@ -87,17 +87,13 @@
         <mat-panel-title> How secure is my data? </mat-panel-title>
       </mat-expansion-panel-header>
       <p>
-        We never store passwords on our server. Transaction data is encrypted in
-        transit, and all transactions in our database are stored in an encrypted
-        format, the key to which is unique to each user and stored in a
-        decentralized manner.
+        We never store passwords in our database, all the user data including transactions is encrypted in transit as well as in storage using AES-256 encryption. 
       </p>
     </mat-expansion-panel>
   </mat-accordion>
   <div class="contact-info">
-    Hey, I'm Sameer, the Coinkeeper developer 😄 Need help? Check the help
-    section or <a href="mailto:sameertrivedi1234&#64;gmail.com">reach out</a>.
-    Thanks for using Coinkeeper!
+    Made with ❤️ in 🇮🇳
   </div>
+  <app-logout></app-logout>
   <app-navbar></app-navbar>
 </div>

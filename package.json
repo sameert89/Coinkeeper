@@ -23,6 +23,7 @@
     "@ng-web-apis/common": "^3.0.6",
     "@ng-web-apis/speech": "^3.0.7",
     "echarts": "^5.5.0",
+    "ngx-cookie-service": "^17.1.0",
     "ngx-echarts": "^17.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

@@ -1,8 +1,23 @@
-<div class="profile-container">
-  <form [formGroup]="userDataFormGroup">
-    <p>{{ this.userDataFormGroup.value.email }}</p>
-    <input formControlName="name" />
-    <input formControlName="email" />
+<form class="profile-container" [formGroup]="userDataFormGroup">
+  <!-- <p>{{ this.userDataFormGroup.value.email }}</p> -->
+  <img class="profile-picture" [src]="generateUserProfilePicUrl()" />
+  <mat-form-field class="form-field">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" />
+  </mat-form-field>
+  <mat-form-field class="form-field">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" />
+  </mat-form-field>
+  <form [formGroup]="userDataFormGroup.controls.preferences">
+    <mat-form-field class="form-field">
+      <mat-label>Budget</mat-label>
+      <input matInput formControlName="budget"/>
+    </mat-form-field>
   </form>
-  <app-navbar></app-navbar>
-</div>
+  <button mat-stroked-button color="primary" (click)="handleEditButtonPress()">
+    {{ buttonText }}
+  </button>
+</form>
+<app-logout></app-logout>
+<app-navbar></app-navbar>
