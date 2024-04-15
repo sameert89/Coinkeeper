@@ -80,7 +80,6 @@ export class AddExpenseFormComponent {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
       if (result != '') this.fillFormFromVoice(result);
     });
   }
@@ -89,7 +88,6 @@ export class AddExpenseFormComponent {
       next: ({ interpretedData }) => {
         if (interpretedData.search('null') != -1) return;
         const dataArray = interpretedData.split(',');
-        console.log(dataArray);
         this.expenseFormGroup.patchValue({
           description: dataArray[1],
           amount: parseInt(dataArray[2]),

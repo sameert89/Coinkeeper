@@ -1,20 +1,17 @@
-import { Component } from '@angular/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { TextFieldModule } from '@angular/cdk/text-field';
+import { Component, Inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import {
-  MatDialogTitle,
-  MatDialogContent,
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
+    MAT_DIALOG_DATA, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef,
+    MatDialogTitle
 } from '@angular/material/dialog';
-import { Inject } from '@angular/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { TextFieldModule } from '@angular/cdk/text-field';
+import { MatInputModule } from '@angular/material/input';
+
 import { SpeechRecognitionService } from '../../data-access/speech-recognition.service';
+
 @Component({
   selector: 'app-speech-input-dialog',
   standalone: true,
@@ -63,7 +60,7 @@ export class SpeechInputDialogComponent {
     this.speechRecognitionService.speechPaused().subscribe(() => {
       // User has stopped recording
       // Do whatever when mic finished listening
-      console.log('User Stoppend Speaking');
+      // console.log('User Stoppend Speaking');
     });
 
     // Subscription to detect user input from voice to text.

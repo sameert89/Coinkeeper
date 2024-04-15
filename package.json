@@ -23,6 +23,8 @@
     "@ng-web-apis/common": "^3.0.6",
     "@ng-web-apis/speech": "^3.0.7",
     "echarts": "^5.5.0",
+    "gulp": "^5.0.0",
+    "gulp-gzip": "^1.4.2",
     "ngx-cookie-service": "^17.1.0",
     "ngx-echarts": "^17.1.0",
     "rxjs": "~7.8.0",
@@ -40,6 +42,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "lite-server": "^2.6.1",
     "typescript": "~5.3.2"
   }
 }

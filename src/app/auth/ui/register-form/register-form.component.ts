@@ -1,18 +1,15 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { StartButtonComponent } from '../../../shared/ui/start-button/start-button.component';
 import { Router, RouterModule } from '@angular/router';
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+
+import { StartButtonComponent } from '../../../shared/ui/start-button/start-button.component';
 import { AuthService } from '../../data-access/auth.service';
 import { RegisterFormModel } from '../../data-access/register-form.model';
+
 @Component({
   selector: 'app-register-form',
   standalone: true,
@@ -45,7 +42,6 @@ export class RegisterFormComponent {
       this.registerForm.value.email,
       this.registerForm.value.password
     );
-    console.log(registrationData);
     this.authService.registerUser(registrationData).subscribe({
       next: () => {
         this._snackBar.open('Registered Successfuly Please Login', 'Close', {

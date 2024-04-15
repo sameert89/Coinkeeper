@@ -32,20 +32,4 @@ export class ToggleThemeComponent {
       }
     });
   }
-
-  // toggleTheme() {
-  //   const currentTheme = this.document.body.classList.contains('dark')
-  //     ? 'dark'
-  //     : 'light';
-  //   if (currentTheme === 'dark') {
-  //     this.document.body.classList.remove('dark');
-  //     this.document.body.classList.add('light');
-  //     this.themeIcon = 'wb_sunny'; // Show icon for dark mode switch
-  //   } else {
-  //     this.document.body.classList.remove('light');
-  //     this.document.body.classList.add('dark');
-  //     this.themeIcon = 'brightness_3'; // Show icon for light mode switch
-  //   }
-  //   this.toggleThemeService.toggleMode();
-  // }
 }

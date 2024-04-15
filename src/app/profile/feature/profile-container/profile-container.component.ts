@@ -19,7 +19,7 @@ import { ProfileDataService } from '../../data-access/profile-data.service';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    LogoutComponent
+    LogoutComponent,
   ],
   templateUrl: './profile-container.component.html',
   styleUrl: './profile-container.component.scss',
@@ -62,27 +62,27 @@ export class ProfileContainerComponent {
     this.userDataFormGroup.disable();
     this.profileDataService.fetchProfileData().subscribe({
       next: (response) => {
-        console.log(response);
         this.userDataFormGroup.setValue({
           name: response.name,
           email: response.email,
           preferences: {
-            budget: response.preferences.budget,
-            defaultPage: response.preferences.defaultPage,
+            budget: response.preferences.budget || 0,
+            defaultPage: response.preferences.defaultPage || '',
             customCategories: response.preferences.customCategories || [],
           },
         });
+        this.generateUserProfilePicUrl();
       },
       error: (error) => {
         console.log(error);
       },
     });
   }
-  private profile: string = '';
+  profile: string = '';
   generateUserProfilePicUrl(): string {
     if (!this.profile)
       return (this.profile =
-        'https://api.dicebear.com/8.x/shapes/svg?seed=' +
+        'https://api.dicebear.com/8.x/thumbs/svg?seed=' +
         this.userDataFormGroup.value.name);
     else return this.profile;
   }
@@ -96,27 +96,30 @@ export class ProfileContainerComponent {
       this.buttonText = 'Edit';
       this.isEditing = false;
       this.userDataFormGroup.disable();
+      this.updateProfileData();
     }
   }
-  // updateProfileData(): void {
-  //   const updatedProfileData: UserDataModel = {
-  //     name: this.userDataFormGroup.value.name!,
-  //     email: this.userDataFormGroup.value.email!,
-  //     preferences: {
-  //       budget: this.userDataFormGroup.value.preferences?.budget!,
-  //       defaultPage: this.userDataFormGroup.value.preferences?.defaultPage!,
-  //       customCategories:
-  //         this.userDataFormGroup.value.preferences?.customCategories!,
-  //     },
-  //   };
-  //   this.profileDataService.updateProfileData(updatedProfileData).subscribe({
-  //     next: (response) => {
-  //       this.snackbar.open('Userdata updated successfuly', 'Close');
-  //     },
-  //     error: (error) => {
-  //       this.snackbar.open('Error while updating userdata', 'Close');
-  //       console.log(error);
-  //     },
-  //   });
-  // }
+  updateProfileData(): void {
+    const updatedProfileData: UserDataModel = {
+      name: this.userDataFormGroup.value.name!,
+      email: this.userDataFormGroup.value.email!,
+      preferences: {
+        budget: this.userDataFormGroup.value.preferences?.budget!,
+        defaultPage: this.userDataFormGroup.value.preferences?.defaultPage!,
+        customCategories:
+          this.userDataFormGroup.value.preferences?.customCategories!,
+      },
+    };
+    this.profileDataService.updateProfileData(updatedProfileData).subscribe({
+      next: (response) => {
+        this.snackbar.open('Userdata updated successfuly', 'Close');
+        this.profile = '';
+        this.generateUserProfilePicUrl();
+      },
+      error: (error) => {
+        this.snackbar.open('Error while updating userdata', 'Close');
+        console.log(error);
+      },
+    });
+  }
 }

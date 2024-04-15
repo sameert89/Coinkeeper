@@ -93,11 +93,9 @@ export class TransactionContainerComponent implements OnInit, AfterViewInit {
     this.txnDL.deleteTransaction(transaction._id).subscribe({
       next: (response) => {
         this.snackbar.open('Transaction Deleted Successfully', 'Close');
-        // console.log(this.dataSource.data.length);
         this.dataSource.data = this.dataSource.data.filter(
           (txn: any) => txn._id != transaction._id
         );
-        // console.log(this.dataSource.data.length);
         this.cdr.detectChanges();
       },
       error: (error) => {
@@ -124,7 +122,6 @@ export class TransactionContainerComponent implements OnInit, AfterViewInit {
     return `${day}/${month}/${year}`;
   }
   handleDateChange() {
-    console.log('updating');
     this.updateTable();
   }
 }

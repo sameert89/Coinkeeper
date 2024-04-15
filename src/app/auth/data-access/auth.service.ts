@@ -1,9 +1,11 @@
+import { catchError, map, Observable, of } from 'rxjs';
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { apiUri } from '../../shared/utils/constants';
-import { RegisterFormModel } from './register-form.model';
 import { LoginFormModel } from './login-form.model';
-import { Observable, of, catchError, map } from 'rxjs';
+import { RegisterFormModel } from './register-form.model';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +22,6 @@ export class AuthService {
       .pipe(
         map((response) => true),
         catchError((error) => {
-          // console.log(error);
           return of(false);
         })
       );
@@ -31,7 +32,6 @@ export class AuthService {
       .pipe(
         map((response) => true),
         catchError((error) => {
-          // console.log(error);
           return of(false);
         })
       );
@@ -40,7 +40,6 @@ export class AuthService {
     return this._http.get(apiUri + 'auth/session-validate', this.options).pipe(
       map((response) => true),
       catchError((error) => {
-        //console.log(error);
         return of(false);
       })
     );

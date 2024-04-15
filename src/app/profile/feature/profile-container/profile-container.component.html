@@ -1,6 +1,6 @@
 <form class="profile-container" [formGroup]="userDataFormGroup">
   <!-- <p>{{ this.userDataFormGroup.value.email }}</p> -->
-  <img class="profile-picture" [src]="generateUserProfilePicUrl()" />
+  <img class="profile-picture" [src]="this.profile" />
   <mat-form-field class="form-field">
     <mat-label>Name</mat-label>
     <input matInput formControlName="name" />
