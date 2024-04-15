@@ -20,5 +20,5 @@ export const categories = new Map<string, string>([
   ['Emergency', 'warning'],
 ]);
 
-// export const apiUri = 'https://coinkeeperbackend.onrender.com/api/v1/';
-export const apiUri = 'http://localhost:3000/api/v1/';
+export const apiUri = 'https://coinkeeperbackend.onrender.com/api/v1/';
+// export const apiUri = 'http://localhost:3000/api/v1/';
