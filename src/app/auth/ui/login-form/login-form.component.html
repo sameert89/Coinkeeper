@@ -30,5 +30,6 @@
   <app-start-button
     (clicked)="loginUser()"
     [buttonTitle]="'Continue'"
+    [disabled]="!loginForm.valid"
   ></app-start-button>
 </form>
