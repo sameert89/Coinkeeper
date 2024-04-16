@@ -43,7 +43,6 @@ export class DashboardDataLoaderService {
         new ExpenseClassificationChartDataModel(name, value)
     );
 
-    // Assuming categories is a Map or similar, ensuring order for categorywiseExpenditureValues
     const categorywiseExpenditureValues = Array.from(categories.keys()).map(
       (category) => categoryTotals[category]
     );
@@ -51,7 +50,7 @@ export class DashboardDataLoaderService {
     return new DashboardComponentDataModel(
       new BudgetInfoComponentDataModel(
         totalSpent,
-        0,
+        data.budget,
         categoryWithMaximumExpense.category
       ),
       chartData,

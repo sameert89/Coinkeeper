@@ -11,7 +11,6 @@ import { apiUri } from '../../shared/utils/constants';
 })
 export class ProfileDataService {
   constructor(private http: HttpClient) {}
-
   fetchProfileData(): Observable<any> {
     return this.http.get(apiUri + 'preferences', {
       withCredentials: true,
