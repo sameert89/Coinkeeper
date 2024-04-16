@@ -22,7 +22,7 @@ export class DashboardDataLoaderService {
       {}
     );
 
-    const { categoryTotals, totalSpent } = data.reduce(
+    const { categoryTotals, totalSpent } = data.transactions.reduce(
       (acc: any, transaction: any) => {
         acc.categoryTotals[transaction.category] =
           (acc.categoryTotals[transaction.category] || 0) + transaction.amount;
@@ -46,7 +46,6 @@ export class DashboardDataLoaderService {
     const categorywiseExpenditureValues = Array.from(categories.keys()).map(
       (category) => categoryTotals[category]
     );
-
     return new DashboardComponentDataModel(
       new BudgetInfoComponentDataModel(
         totalSpent,
