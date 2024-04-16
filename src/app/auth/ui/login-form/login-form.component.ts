@@ -19,8 +19,8 @@ import { LoginFormModel } from '../../data-access/login-form.model';
     MatInputModule,
     StartButtonComponent,
     RouterModule,
-    ReactiveFormsModule,
     MatSnackBarModule,
+    ReactiveFormsModule
   ],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.scss',
