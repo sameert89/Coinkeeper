@@ -21,10 +21,7 @@
       <mat-icon>date_range</mat-icon>
     </button>
     <p>
-      {{ date.toLocaleString('en-US', {
-      month: 'long',
-      year: 'numeric',
-    }) }}
+      {{ date | date: 'MMMM y' }}
     </p>
   </div>
   <div class="vertical-rule"></div>
